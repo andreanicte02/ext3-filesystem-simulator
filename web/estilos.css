@@ -1,0 +1,182 @@
+:root {
+    --fondo: #f6f7f9;
+    --panel: #ffffff;
+    --texto: #1f2328;
+    --suave: #59636e;
+    --borde: #d1d9e0;
+    --acento: #0969da;
+    --terminal: #0d1117;
+    --terminal-texto: #e6edf3;
+    --escrito: #7ee787;
+    --aviso: #d29922;
+    color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fondo: #0d1117;
+        --panel: #161b22;
+        --texto: #e6edf3;
+        --suave: #9198a1;
+        --borde: #30363d;
+        --acento: #4493f8;
+        --terminal: #010409;
+        color-scheme: dark;
+    }
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+a { color: var(--acento); }
+
+.pagina { max-width: 1400px; margin: 0 auto; padding: 16px; }
+
+header h1 { margin: 0 0 4px; font-size: 1.5rem; }
+header p { margin: 0 0 12px; color: var(--suave); max-width: 900px; }
+
+h2 { font-size: 1rem; margin: 0 0 6px; }
+
+.trabajo {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 12px;
+    height: calc(100vh - 150px);
+    min-height: 520px;
+}
+
+@media (max-width: 900px) {
+    .trabajo { grid-template-columns: minmax(0, 1fr); height: auto; }
+    .terminal-panel { height: 70vh; }
+}
+
+.terminal-panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--terminal);
+}
+
+.terminal {
+    flex: 1;
+    overflow: auto;
+    padding: 12px;
+    color: var(--terminal-texto);
+    font: 13px/1.45 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.terminal .escrito { color: var(--escrito); }
+.terminal .aviso { color: var(--aviso); }
+
+.entrada {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-top: 1px solid #30363d;
+}
+
+.prompt { color: var(--escrito); font-family: ui-monospace, Menlo, monospace; }
+
+.entrada input {
+    flex: 1;
+    min-width: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--terminal-texto);
+    font: 14px ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+button {
+    font: inherit;
+    color: var(--texto);
+    background: var(--panel);
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+button:disabled { opacity: 0.5; cursor: default; }
+
+.entrada button { background: #21262d; color: var(--terminal-texto); border-color: #30363d; }
+
+.lateral {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0;
+}
+
+.demo, .reportes {
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: var(--panel);
+    padding: 12px;
+}
+
+.reportes { flex: 1; overflow: auto; min-height: 240px; }
+
+.ayuda { margin: 0 0 8px; color: var(--suave); font-size: 0.88rem; }
+
+#pasos { margin: 0 0 10px; padding-left: 22px; font-size: 0.9rem; }
+#pasos li { margin: 2px 0; color: var(--suave); }
+#pasos li.hecho { text-decoration: line-through; }
+#pasos li.actual { color: var(--texto); font-weight: 600; }
+
+.acciones { display: flex; flex-wrap: wrap; gap: 6px; }
+#siguiente { background: var(--acento); border-color: var(--acento); color: #fff; font-weight: 600; }
+
+.reporte { border-top: 1px solid var(--borde); padding: 8px 0; }
+.reporte summary { cursor: pointer; font-weight: 600; font-size: 0.92rem; }
+
+.grafica { overflow: auto; margin-top: 8px; background: #fff; border-radius: 6px; padding: 8px; color: #1f2328; cursor: zoom-in; }
+.grafica svg { max-width: 100%; height: auto; }
+
+.texto {
+    margin: 8px 0 0;
+    max-height: 260px;
+    overflow: auto;
+    padding: 8px;
+    background: var(--fondo);
+    border-radius: 6px;
+    font: 12px/1.4 ui-monospace, Menlo, Consolas, monospace;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+#visor {
+    width: min(1200px, calc(100vw - 32px));
+    height: calc(100vh - 64px);
+    padding: 0;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--texto);
+}
+
+#visor[open] { display: flex; flex-direction: column; }
+#visor::backdrop { background: rgb(0 0 0 / 0.5); }
+
+.visor-barra {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--borde);
+}
+
+#visor-lienzo { flex: 1; overflow: auto; background: #fff; padding: 12px; }
