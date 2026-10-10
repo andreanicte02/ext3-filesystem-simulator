@@ -11,6 +11,9 @@
 #include "creacion_discos.h"
 #include "general.h"
 
+// un bloque de 1 KB en ceros para llenar los discos (antes se escribia desde un char de 1 byte)
+static const char kilo_de_ceros[1024] = {0};
+
 //-------------------------generar ids
 
 void mostrar(idspart part) {
@@ -285,7 +288,7 @@ void c_disco() {
     char nombre2[50];
     char path[150];
     long int tamano;
-    char medida[1];
+    char medida[10];
 
     printf("Ingrese el nombre del disco: \n");
     scanf(" %[^\n]s", nombre);
@@ -322,7 +325,7 @@ void c_disco() {
                 for (long int conta = 0; conta < tamano; conta++) {
                     for (int x = 0; x < 1024; x++) {
 
-                        fwrite(&byte, sizeof (byte), 1024, archivo);
+                        fwrite(kilo_de_ceros, sizeof (byte), 1024, archivo);
 
                     }
                 }
@@ -333,7 +336,7 @@ void c_disco() {
                 auxtamn = tamano * 1024;
                 for (long int conta = 0; conta < tamano; conta++) {
 
-                    fwrite(&byte, sizeof (byte), 1024, archivo);
+                    fwrite(kilo_de_ceros, sizeof (byte), 1024, archivo);
                 }
                 printf("se creo el disco medida: kb \n");
             }
@@ -418,7 +421,7 @@ void aumentar_disco() {
             for (long int conta = 0; conta < tamano; conta++) {
                 for (int x = 0; x < 1024; x++) {
 
-                    fwrite(&byte, sizeof (byte), 1024, archivo);
+                    fwrite(kilo_de_ceros, sizeof (byte), 1024, archivo);
 
                 }
             }

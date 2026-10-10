@@ -242,7 +242,7 @@ void crearraiz(char *path, long int inicio_particion, long int tamano) {
         archivo1.apactual=2;
         archivo1.appadre=2; //inodo padre tambien es el 2
         char primero [24]="1,G,root:1,U,root,root,2";
-        strcpy(archivo1.info,primero);
+        memcpy(archivo1.info,primero,sizeof(archivo1.info)); // info es de 24 sin \0
         fwrite(&archivo1,sizeof(b_archivos),1,archivo);
        
         
@@ -250,7 +250,7 @@ void crearraiz(char *path, long int inicio_particion, long int tamano) {
         archivo2.apactual=3;
         archivo2.appadre=2; //inodo padre tambien es el 2
         char segundo [24]="01404104:\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
-        strcpy(archivo2.info,segundo);
+        memcpy(archivo2.info,segundo,sizeof(archivo2.info));
         fwrite(&archivo2,sizeof(b_archivos),1,archivo);
         fclose(archivo);
     }

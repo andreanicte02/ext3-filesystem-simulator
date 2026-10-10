@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simulador EXT3</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div class="pagina">
+    <header>
+        <h1>Simulador de sistema de archivos EXT3</h1>
+        <p>
+            Programa en C que simula discos virtuales con particiones, formato EXT3 (superbloque, inodos, bloques,
+            bitmaps y journaling), usuarios, carpetas y archivos. Corre en el navegador compilado a WebAssembly;
+            los reportes que antes se generaban con Graphviz se dibujan aquí mismo.
+            <a href="https://github.com/andreanicte02/archivos-fase1" target="_blank" rel="noopener">Código fuente</a>
+        </p>
+    </header>
+
+    <div class="trabajo">
+        <section class="terminal-panel">
+            <div class="terminal" id="terminal" aria-live="polite"></div>
+            <form class="entrada" id="formulario">
+                <span class="prompt">&gt;</span>
+                <input id="entrada" autocomplete="off" spellcheck="false" placeholder="Cargando..." disabled>
+                <button type="submit" id="enviar" disabled>Enviar</button>
+            </form>
+        </section>
+
+        <aside class="lateral">
+            <section class="demo">
+                <h2>Demo guiada</h2>
+                <p class="ayuda">
+                    El programa es un menú: se responde escribiendo números y datos. Puedes usarlo libremente o seguir
+                    estos pasos, que escriben las respuestas por ti. Después de mostrar un archivo, el programa espera un
+                    número para continuar (escribe 0).
+                </p>
+                <ol id="pasos"></ol>
+                <div class="acciones">
+                    <button id="siguiente" disabled>Siguiente paso</button>
+                    <button id="todo" disabled>Ejecutar todos</button>
+                    <button id="reiniciar">Reiniciar</button>
+                </div>
+            </section>
+
+            <section class="reportes">
+                <h2>Reportes</h2>
+                <p class="ayuda" id="sin-reportes">Aquí aparecen los reportes que genera el programa (opciones 2 a 10 del menú de archivos).</p>
+                <div id="lista-reportes"></div>
+            </section>
+        </aside>
+    </div>
+</div>
+
+<dialog id="visor">
+    <div class="visor-barra">
+        <strong id="visor-titulo"></strong>
+        <button id="visor-cerrar">Cerrar</button>
+    </div>
+    <div id="visor-lienzo"></div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@viz-js/viz@3.30.0/dist/viz-global.js"></script>
+<script src="app.js"></script>
+<script src="ext3.js"></script>
+</body>
+</html>
