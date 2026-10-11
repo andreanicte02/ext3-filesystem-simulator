@@ -8,7 +8,7 @@ Programa en C que simula un sistema de archivos tipo **EXT3** sobre discos virtu
 - Crear carpetas, mostrar, eliminar, renombrar y mover archivos y directorios
 - Reportes con Graphviz: directorios, archivos, general, inodos, bloques; y en texto: bitmaps y journaling
 
-**Demo:** https://andreanicte02.github.io/archivos-fase1/
+**Demo:** https://andreanicte02.github.io/ext3-filesystem-simulator/
 
 La demo corre el mismo programa compilado a WebAssembly con Emscripten. Los discos viven en la memoria del
 navegador (se pierden al recargar) y los reportes se dibujan en la página con [viz.js](https://github.com/mdaines/viz-js).
